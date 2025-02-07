@@ -26,12 +26,33 @@ function App() {
  
   const handleGraduatedInput = e => setGraduated(e.target.checked);
 
+  const addNewStudent = (newStudent) => {
+    const updatedStudentList = [...students, newStudent];
+
+    setStudents(updatedStudentList);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const newStudent = { fullName, email, phone, program, image, graduationYear, graduated };
+
+    addNewStudent(newStudent);
+
+    setFullName("");
+    setImage("");
+    setPhone("");
+    setEmail("");
+    setProgram("");
+    setGraduationYear(2023);
+    setGraduated(false);
+  }
+
   return (
     <div className="App pt-20">
       <Navbar />
 
       {/* FORM */}
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <span>Add a Student</span>
         <div>
           <label>
